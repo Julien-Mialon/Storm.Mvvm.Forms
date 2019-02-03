@@ -8,7 +8,7 @@ namespace Storm.Mvvm.Services
 {
 	public class NavigationService : INavigationService
 	{
-		private readonly Stack<Tuple<Page, NavigationMode>> _pages = new Stack<Tuple<Page, NavigationMode>>();
+		private readonly Stack<(Page, NavigationMode)> _pages = new Stack<(Page, NavigationMode)>();
 
 		public event EventHandler<PagePushEventArgs> ViewPushed;
 		public event EventHandler<PagePopEventArgs> ViewPopped;
@@ -17,8 +17,8 @@ namespace Storm.Mvvm.Services
 
 		public Task PushAsync(Page page, Dictionary<string, object> parameters = null, NavigationMode mode = NavigationMode.Push, bool animated = true)
 		{
-			_pages.Push(new Tuple<Page, NavigationMode>(page, mode));
-			
+			_pages.Push((page, mode));
+
 			if (page.BindingContext is ViewModelBase vm)
 			{
 				vm.Initialize(parameters ?? new Dictionary<string, object>());
@@ -33,9 +33,9 @@ namespace Storm.Mvvm.Services
 			else
 			{
 				result = CurrentPage.Navigation.PushModalAsync(page, animated);
-				OnPush(page, mode);
+				// Push will be handled by the MvvmNavigationPage
 			}
-			
+
 			return result;
 		}
 
@@ -46,9 +46,9 @@ namespace Storm.Mvvm.Services
 
 		public Task<Page> PopAsync(bool animated = true)
 		{
-			Tuple<Page, NavigationMode> top = _pages.Pop();
+			(Page _, NavigationMode mode) = _pages.Pop();
 			Task<Page> result;
-			if (top.Item2 == NavigationMode.Push)
+			if (mode == NavigationMode.Push)
 			{
 				result = CurrentPage.Navigation.PopAsync(animated);
 				// Pop will be handled by the MvvmNavigationPage
@@ -56,7 +56,7 @@ namespace Storm.Mvvm.Services
 			else
 			{
 				result = CurrentPage.Navigation.PopModalAsync(animated);
-				OnPop(top.Item1, top.Item2);
+				// Pop will be handled by the MvvmApplication
 			}
 			return result;
 		}
