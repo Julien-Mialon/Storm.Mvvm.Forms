@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageVersion>2.0</PackageVersion>
+    <PackageId>Storm.Mvvm.Forms</PackageId>
+    <Title>Storm.Mvvm.Forms</Title>
+    <Authors>Julien Mialon, Valentin Jubert</Authors>
+    <Description>Mvvm helpers to use with Xamarin.Forms</Description>
+    <Copyright>Copyright 2014</Copyright>
+    <PackageLicenseUrl>https://github.com/Julien-Mialon/Storm.Mvvm.Forms/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/Julien-Mialon/Storm.Mvvm.Forms</PackageProjectUrl>
+    <PackageTags>mvvm;pcl;xamarin;xamarin.forms;forms</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
+  </ItemGroup>
+
+</Project>
