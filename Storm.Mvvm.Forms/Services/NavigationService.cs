@@ -33,7 +33,7 @@ namespace Storm.Mvvm.Services
 			else
 			{
 				result = CurrentPage.Navigation.PushModalAsync(page, animated);
-				// Push will be handled by the MvvmNavigationPage
+				// Push will be handled by the MvvmApplication
 			}
 
 			return result;
