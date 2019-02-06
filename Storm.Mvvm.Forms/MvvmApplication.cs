@@ -1,4 +1,5 @@
 ﻿using System;
+using Storm.Mvvm.Patterns;
 using Storm.Mvvm.Services;
 using Xamarin.Forms;
 
@@ -6,6 +7,8 @@ namespace Storm.Mvvm
 {
 	public class MvvmApplication : Application
 	{
+		public INavigationService NavigationService => LazySingletonInitializer<INavigationService>.Value;
+
 		/// <summary>
 		/// Initialize MvvmApplication with default service but do not initialize MainPage.
 		/// You need to call InitializeMainPage next !
@@ -18,6 +21,16 @@ namespace Storm.Mvvm
 			DependencyService.Register<ICurrentPageService, CurrentPageService>();
 
 			serviceRegisterCallback?.Invoke();
+
+			ModalPopped += (sender, args) =>
+			{
+				NavigationService.OnPop(args.Modal, NavigationMode.Modal);
+			};
+
+			ModalPushed += (sender, args) =>
+			{
+				NavigationService.OnPush(args.Modal, NavigationMode.Push);
+			};
 		}
 
 		/// <summary>
@@ -47,7 +60,7 @@ namespace Storm.Mvvm
 	//{
 	//	public MvvmApplication(Action serviceRegisterCallback = null) : base(() => new TMainPage(), serviceRegisterCallback)
 	//	{
-			
+
 	//	}
 	//}
 }
