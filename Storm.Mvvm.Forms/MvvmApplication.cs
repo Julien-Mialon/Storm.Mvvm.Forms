@@ -54,13 +54,4 @@ namespace Storm.Mvvm
 			MainPage = new MvvmNavigationPage(mainPage);
 		}
 	}
-
-	//VJU: commenté puisque le partial Xaml a du mal avec le type générique
-	//public class MvvmApplication<TMainPage> : MvvmApplication where TMainPage : Page, new()
-	//{
-	//	public MvvmApplication(Action serviceRegisterCallback = null) : base(() => new TMainPage(), serviceRegisterCallback)
-	//	{
-
-	//	}
-	//}
 }
