@@ -6,7 +6,7 @@
 
   <PropertyGroup>
     <IsPackable>true</IsPackable>
-    <PackageVersion>2.3</PackageVersion>
+    <PackageVersion>2.4</PackageVersion>
     <PackageId>Storm.Mvvm.Forms</PackageId>
     <Title>Storm.Mvvm.Forms</Title>
     <Authors>Julien Mialon, Valentin Jubert</Authors>
