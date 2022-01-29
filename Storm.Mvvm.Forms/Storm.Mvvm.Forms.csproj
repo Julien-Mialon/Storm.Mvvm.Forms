@@ -6,19 +6,19 @@
 
   <PropertyGroup>
     <IsPackable>true</IsPackable>
-    <PackageVersion>2.4</PackageVersion>
+    <PackageVersion>2.5</PackageVersion>
     <PackageId>Storm.Mvvm.Forms</PackageId>
     <Title>Storm.Mvvm.Forms</Title>
     <Authors>Julien Mialon, Valentin Jubert</Authors>
     <Description>Mvvm helpers to use with Xamarin.Forms</Description>
-    <Copyright>Copyright 2014</Copyright>
+    <Copyright>Copyright 2014-2022</Copyright>
     <PackageLicenseUrl>https://github.com/Julien-Mialon/Storm.Mvvm.Forms/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Julien-Mialon/Storm.Mvvm.Forms</PackageProjectUrl>
     <PackageTags>mvvm;pcl;xamarin;xamarin.forms;forms</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1534" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
   </ItemGroup>
 
 </Project>
