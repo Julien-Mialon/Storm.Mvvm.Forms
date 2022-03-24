@@ -21,16 +21,6 @@ namespace Storm.Mvvm
 			DependencyService.Register<ICurrentPageService, CurrentPageService>();
 
 			serviceRegisterCallback?.Invoke();
-
-			ModalPopped += (sender, args) =>
-			{
-				NavigationService.OnPop(args.Modal, NavigationMode.Modal);
-			};
-
-			ModalPushed += (sender, args) =>
-			{
-				NavigationService.OnPush(args.Modal, NavigationMode.Push);
-			};
 		}
 
 		/// <summary>
@@ -50,8 +40,10 @@ namespace Storm.Mvvm
 
 		protected void InitializeMainPage(Page mainPage)
 		{
-			DependencyService.Get<ICurrentPageService>().Push(mainPage);
-			MainPage = new MvvmNavigationPage(mainPage);
+			DependencyService.Register<NavigationPage, NavigationPage>();
+			NavigationPage navigationPage = DependencyService.Get<NavigationPage>();
+			navigationPage.PushAsync(mainPage);
+			MainPage = navigationPage;
 		}
 	}
 }

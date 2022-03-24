@@ -17,9 +17,7 @@ namespace Storm.Mvvm
 	public class ViewModelBase : NotifierBase, IViewModelLifecycle
 	{
 		private Dictionary<string, object> _navigationParameters;
-
-		public INavigationService NavigationService => LazySingletonInitializer<INavigationService>.Value;
-
+		
 		public virtual void Initialize(Dictionary<string, object> navigationParameters)
 		{
 			_navigationParameters = navigationParameters;

@@ -5,25 +5,25 @@ namespace Storm.Mvvm.Services
 {
 	public class CurrentPageService: ICurrentPageService
 	{
-		private readonly Stack<Page> _pages = new Stack<Page>();
-
-		public Page CurrentPage => _pages.Peek();
-
-		public CurrentPageService()
+		public Page CurrentPage
 		{
-			INavigationService navigationService = DependencyService.Get<INavigationService>();
-			navigationService.ViewPushed += (sender, args) =>
+			get
 			{
-				Push(args.Page);
-			};
-			navigationService.ViewPopped += (sender, args) =>
-			{
-				Pop();
-			};
+				NavigationPage navigationPage = DependencyService.Get<NavigationPage>();
+				IReadOnlyList<Page> modalStack = navigationPage.Navigation.ModalStack;
+				if (modalStack.Count > 0)
+				{
+					return modalStack[modalStack.Count - 1];
+				}
+
+				IReadOnlyList<Page> navStack = navigationPage.Navigation.NavigationStack;
+				if (navStack.Count > 0)
+				{
+					return navStack[navStack.Count - 1];
+				}
+
+				return null;
+			}
 		}
-
-		public void Push(Page newPage) => _pages.Push(newPage);
-
-		public void Pop() => _pages.Pop();
 	}
 }

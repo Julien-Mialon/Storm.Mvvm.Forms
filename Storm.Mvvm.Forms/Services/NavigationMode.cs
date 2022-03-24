@@ -3,6 +3,8 @@
 	public enum NavigationMode
 	{
 		Push,
-		Modal
+		Modal,
+		Replace,
+		ReplaceAll,
 	}
 }
